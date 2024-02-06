@@ -16,6 +16,8 @@ const ws = new WebSocket('ws://localhost:8082')
 
 const mqttClient = mqtt.connect(connectUrl, {
     clientId,
+    username: "test",
+    password: "test",
     clean: true,
     connectTimeout: 4000,
     reconnectPeriod: 1000,
