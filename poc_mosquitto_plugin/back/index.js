@@ -10,16 +10,22 @@ app.post('/getuser', (req, res) => {
 
 	// Check user
 	if (req.body.username !== "test") {
-
+		res.send('Not a good user').status(400)
 	}
 
-	res.send('Fake GetUser')
+	res.send('Fake GetUser Valid')
 })
 
 app.post('/aclcheck', (req, res) => {
 	console.log('ACL Check')
 	console.log(req.body)
-	res.send('Fake ACL')
+
+	// Check user
+	if (req.body.username !== "test") {
+		res.send('Not a good user').status(400)
+	}
+
+	res.send('Fake ACL Valid')
 })
 
 app.listen(port, () => {
