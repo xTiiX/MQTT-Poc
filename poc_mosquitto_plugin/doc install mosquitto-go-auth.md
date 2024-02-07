@@ -6,7 +6,7 @@
 
 [schema_authz]: ./schema_authz.png "Schéma Fonctionnel"
 
-1. Call MQTT (connect, sub, pub) et reception de Mosquitto
+1. Call WS (connect, sub, pub) et reception de Mosquitto
 2. Call HTTP vers l'app d'authorisation avec les informations permettant l'authorisation
 3. Callback vers Mosquitto avec un status 200 (Authorized) ou 400 (Unauthorized)
 4. Reception au back du résultat de l'action (succes ou non du connect, sub ou pub)
