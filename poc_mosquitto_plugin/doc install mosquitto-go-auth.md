@@ -13,5 +13,5 @@
 5. En cas de reception de pub, Call WebSocket pour transferer les infos au front (6.)
 
 Pour faire des tests, lancer le docker avec un `docker compose up` puis :
-- `curl --location 'localhost:3000/sub' --header 'Content-Type: application/json' --data '{"topic": "/onebus"}'`
-- `curl --location 'localhost:8181/pub' --header 'Content-Type: application/json' --data '{"topic": "/onebus", "message":"This is a test"}'`
+- `curl --location 'localhost:3000/sub' --header 'Content-Type: application/json' --data '{"topic": "/unobus"}'`
+- `curl --location 'localhost:8181/pub' --header 'Content-Type: application/json' --data '{"topic": "/unobus", "message":"This is a test"}'`
