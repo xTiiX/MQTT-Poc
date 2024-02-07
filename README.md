@@ -1,10 +1,17 @@
-Installation
+# PoC mosquitto avec authorizer
 
-1. serv-mqtt -> docker-compose.yaml / `docker compose -up -d`
-2. serv-ws -> `node index`
-3. poc-full-back -> `node index`
-4. calls to back
-	1. localhost:3000/sub with { topic": "/onebus" }
-	2. localhost:3000/pub with { "topic": "/onebus", "message": "Hello World !" }
+## Schéma Fonctionnel
 
--> Answer on WebSocket if everything is working !
+![Schéma Fonctionnel][schema_authz]
+
+[schema_authz]: ./schema_authz.png "Schéma Fonctionnel"
+
+1. Call WS (connect, sub, pub) et reception de Mosquitto
+2. Call HTTP vers l'app d'authorisation avec les informations permettant l'authorisation
+3. Callback vers Mosquitto avec un status 200 (Authorized) ou 400 (Unauthorized)
+4. Reception au back du résultat de l'action (succes ou non du connect, sub ou pub)
+5. En cas de reception de pub, Call WebSocket pour transferer les infos au front (6.)
+
+Pour faire des tests, lancer le docker avec un `docker compose up` puis :
+- `curl --location 'localhost:3000/sub' --header 'Content-Type: application/json' --data '{"topic": "/unobus"}'`
+- `curl --location 'localhost:8181/pub' --header 'Content-Type: application/json' --data '{"topic": "/unobus", "message":"This is a test"}'`
