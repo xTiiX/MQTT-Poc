@@ -1,0 +1,23 @@
+services:
+  mosquitto_with_authz:
+    build: .
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosqui/config:/etc/mosquitto/:rw
+      - ./log:/var/log/mosquitto/:rw
+  pseudo-front:
+    image: node:18-alpine
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./pseudo-front:/app
+    entrypoint: "node /app/index.js"
+  pseudo-back:
+    image: node:18-alpine
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./pseudo-back:/app
+    entrypoint: "node /app/index.js"

@@ -5,7 +5,7 @@ app.use(express.json());
 
 // MQTT
 const mqtt = require('mqtt')
-const host = 'localhost'
+const host = 'mosquitto_with_authz'
 const portMQTT = 9001
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
 const connectUrl = `ws://${host}:${portMQTT}`
