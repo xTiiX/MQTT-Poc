@@ -1,4 +1,18 @@
-# Install mosquitto-go-auth
+# PoC mosquitto avec authorizer
+
+## Schéma Fonctionnel
+
+![Schéma Fonctionnel][schema_authz]
+
+[schema_authz]: ./schema_authz.png "Schéma Fonctionnel"
+
+1. Call MQTT (connect, sub, pub) et reception de Mosquitto
+2. Call HTTP vers l'app d'authorisation avec les informations permettant l'authorisation
+3. Callback vers Mosquitto avec un status 200 (Authorized) ou 400 (Unauthorized)
+4. Reception au back du résultat de l'action (succes ou non du connect, sub ou pub)
+5. En cas de reception de pub, Call WebSocket pour transferer les infos au front (6.)
+
+## Install mosquitto-go-auth
 
 1. sudo apt install perl-doc bsdutils gcc g++ git make dialog libc-ares-dev libcurl4-openssl-dev libwebsockets-dev uuid uuid-dev
 2. sudo apt update
@@ -26,5 +40,7 @@
 24. Suite de la configuration sur le [repo Git](https://github.com/iegomez/mosquitto-go-auth/tree/master?tab=readme-ov-file#configuration)
 25. cd /etc/mosquitto
 26. mosquitto -c mosquitto.conf
+
+Vidéo pouvant aider jusqu'à l'étape 17 : https://www.youtube.com/watch?v=YGOBKE2xbEE
 
 Enjoy
